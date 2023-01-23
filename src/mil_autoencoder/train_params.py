@@ -34,6 +34,7 @@ TrainingPipelineSchema = class_schema(TrainigParams)
 
 
 def read_params(path: Union[str, Path]) -> TrainigParams:
+    """Read TrainigParams from yaml file."""
     with open(path, "r") as param_file:
         schema = TrainingPipelineSchema()
         tparams = schema.load(yaml.safe_load(param_file))

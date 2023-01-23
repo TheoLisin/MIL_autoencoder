@@ -21,7 +21,22 @@ def train_cls(
     testloader: DataLoader,
     labels: tp.Set[str],
     device: Device,
-):
+) -> tp.Tuple[tp.List[float], tp.List[float]]:
+    """Train csript for classifier.
+
+    Args:
+        model (nn.Module): classification model.
+        optim (Optimizer): optimizer (Adam, SGD).
+        loss_func (tp.Callable[[Tensor, Tensor], Tensor]): loss function.
+        epochs (int): number of epochs.
+        trainloader (DataLoader): train data loader.
+        testloader (DataLoader): test data loader
+        labels (tp.Set[str]): name of classes.
+        device (Device): device (e.g. torch.device('cpu'))
+
+    Returns:
+        tp.Tuple[tp.List[float], tp.List[float]]: train and test avg loss per epochs.
+    """
 
     train_loss_history = []
     test_loss_hitory = []

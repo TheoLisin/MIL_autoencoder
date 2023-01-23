@@ -4,6 +4,7 @@ from mil_autoencoder.utils.autoaugment import CIFAR10Policy
 
 
 def cifar_augment_transform():
+    """Create CIFAR10 augmentation transformers."""
     augment_transform = transforms.Compose(
         [
             transforms.RandomCrop(32, padding=4, fill=128),

@@ -1,5 +1,5 @@
 import typing as tp
-from torch import nn, no_grad
+from torch import nn, no_grad, device as Device, Tensor
 from torch.utils.data import DataLoader
 from torch.optim import Optimizer
 from tqdm import tqdm
@@ -11,14 +11,29 @@ logger = getLogger(__name__)
 def train_vae(
     model: nn.Module,
     optim: Optimizer,
-    device: tp.Any,
-    reconstruction_loss_func: tp.Callable,
+    device: Device,
+    reconstruction_loss_func: tp.Callable[[Tensor, Tensor], Tensor],
     trainloader: DataLoader,
     testloader: DataLoader,
     kld_lambda: float = 0.1,
     epochs=20,
     **loss_kwargs,
 ) -> tp.Tuple[tp.List[float], tp.List[float]]:
+    """_summary_
+
+    Args:
+        model (nn.Module): _description_
+        optim (Optimizer): _description_
+        device (tp.Any): _description_
+        reconstruction_loss_func (tp.Callable[[Tensor, Tensor], Tensor]): loss.
+        trainloader (DataLoader): _description_
+        testloader (DataLoader): _description_
+        kld_lambda (float, optional): ELBO loss param. Defaults to 0.1.
+        epochs (int, optional): numer of epochs. Defaults to 20.
+
+    Returns:
+        tp.Tuple[tp.List[float], tp.List[float]]: train and test avg losses per epoch.
+    """
     train_batch_size = trainloader.batch_size
     test_batch_size = testloader.batch_size
     model.to(device)

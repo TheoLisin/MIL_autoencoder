@@ -16,6 +16,7 @@ class ClassificationHead(nn.Module):
         self.head = self.build_head(latent_size, start_dim)
 
     def build_head(self, latent_size: int, start_size: int = 32) -> nn.Module:
+        """Create classification part."""
         modules = []
         dims = [start_size]
         start_pow = len(f"{start_size - 1:b}") - 1
@@ -40,4 +41,5 @@ class ClassificationHead(nn.Module):
         return self.head(latent_repr)
 
     def unfreeze_encoder(self) -> None:
+        """Unfreeze encoder weights."""
         self.encoder.requires_grad_(True)

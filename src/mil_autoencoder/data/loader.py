@@ -9,6 +9,16 @@ def load_data(
     train_transform,
     test_transform,
 ) -> tp.Tuple[Dataset, Dataset, tp.Tuple[str, ...]]:
+    """Load cifar10 data to given path.
+
+    Args:
+        path (tp.Union[str, Path]): path to save.
+        train_transform (_type_): transformers for train dataset.
+        test_transform (_type_): transformers for test dataset.
+
+    Returns:
+        tp.Tuple[Dataset, Dataset, tp.Tuple[str, ...]]: datasets and classes names.
+    """
     trainset = torchvision.datasets.CIFAR10(
         root=path,
         train=True,
