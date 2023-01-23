@@ -44,8 +44,30 @@ optional arguments:
 
 *Пример рекнструкции от малой модели (latent_szie = 64).*
 
-## Подбробнее 
+## Подробнее 
 Более подробнее все опробованные конфигурации моделей в [ноутбуке](/notebooks/MIL_vae.ipynb). Там же сравнительные метрики.
+
+- `mse` по всем пикселям. Среднее и медианные значения на различных картинках в датасете: 1500, 1300
+- `log(cosh(x))` по всем пикселям. Среднее и медианные значения:  случайно удалил. Около 1500
+
+Лучшие метрики:
+- mse: 108; log(cosh): 346
+    - latent_size: 64
+    - epochs: 50
+    - augmentation: False
+    - loss: mse
+
+- mse: 110; log(cosh): 343 
+    - latent_size: 64
+    - epochs: 50
+    - augmentation: False
+    - loss: log(cosh)
+
+- mse: 116; log(cosh): 355
+    - latent_size: 128
+    - epochs: 100
+    - augmentation: True
+    - loss: mse
 
 # Classification
 На обученных моделях VAE попробовал обучить классификаторы. Метрики, по которым сравнивал - стандартный `classification_report` из `scikit-learn`.
