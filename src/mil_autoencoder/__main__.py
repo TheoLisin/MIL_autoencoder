@@ -39,7 +39,7 @@ def parse_args():
     main_group.add_argument(
         "--cls",
         action="store_true",
-        help="run train pipline for VAE model using config.yml file.",
+        help="run train pipline for classification model using config.yml file.",
     )
 
     return parser.parse_args()
