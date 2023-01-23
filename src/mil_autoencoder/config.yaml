@@ -1,0 +1,17 @@
+modelparams:
+  img_size: 32
+  downsamplings: 3
+  latent_size: 128
+  linear_hidden_size: 256
+  down_channels: 4
+  up_channels: 8
+modelname: "vae_state_dict_aug100"
+optim: "Adam"
+lr: 0.003
+device: cpu
+loss: mse_loss
+kld_lambda: 0.1
+epochs: 1
+test_batch_size: 32
+train_batch_size: 32
+augmentation: true
