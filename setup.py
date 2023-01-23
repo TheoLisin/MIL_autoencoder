@@ -26,10 +26,20 @@ setuptools.setup(
     ],
     python_requires=">=3.8",
     install_requires=[
-        "pandas",
+        "tqdm",
+        "torch==1.13.1",
+        "torchvision==0.14.1",
+        "tqdm",
+        "numpy",
+        "marshmallow_dataclass",
+        "matplotlib",
+        "scikit-learn",
     ],
     extras_require={
         "dev": [
+            "jupyterlab",
+            "torchsummary",
+            "ipywidgets",
             "wemake-python-styleguide",
             "mypy",
             "black",
@@ -37,6 +47,11 @@ setuptools.setup(
         "tests": [
             "pytest",
             "pytest-dotenv",
+        ],
+    },
+    entry_points={
+        "console_scripts": [
+            "train = mil_autoencoder.__main__:main",
         ],
     },
 )
